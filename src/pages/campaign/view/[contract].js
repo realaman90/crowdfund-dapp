@@ -11,6 +11,8 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Button, Typography } from '@mui/material'
+import web3 from "ethereum/web3";
+import Participate from "@/components/participate";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -31,12 +33,12 @@ const Item = styled(Paper)(({ theme }) => ({
             description:'This manager minted the campagin and can reauest for realease of Funds'
         },
         {
-            header: balance,
+            header: web3.utils.fromWei(balance,'ether'),
             meta: 'Campaign balance',
             description:'Amount in the campaign'
         },
         {
-            header: minContribution,
+            header: web3.utils.fromWei(minContribution, 'ether') + ' ETH' ,
             meta: 'Campaign minimum contribution',
             description:'Minimum contribution for entring this campaign'
         },
@@ -52,8 +54,8 @@ const Item = styled(Paper)(({ theme }) => ({
         }
     ]
     const renderCards = arr.map((item,index) =>{
-        return(<Grid key={index} item xs={6}>
-            <Item sx={{display:'flex', flexDirection:'column', gap:'10px'}}>
+        return(<Grid key={index} item xs={3}>
+            <Item >
             <Typography variant="subtitle">
                     {item.header}
                 </Typography>
@@ -64,17 +66,24 @@ const Item = styled(Paper)(({ theme }) => ({
                     {item.description}
                 </Typography>
             </Item>
-        </Grid>)
+        </Grid>
+        )
     });
     console.log(arr)
         
  
 
     return<>
-        <Box sx={{padding:4}}>
+        <Box sx={{display:'flex', padding:'20px'}} >
      
-            <Grid container spacing={2}>
+            <Grid container spacing={1} columnGap={1} columns={{xs: 10}} >
             {renderCards}
+            
+            </Grid>
+            <Grid columns={{xs:2}}>
+            <Grid xs={4}>
+                <Participate />
+            </Grid>
             </Grid>
       
         </Box>
