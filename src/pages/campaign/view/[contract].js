@@ -23,9 +23,9 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
   }));
 
- function CampaignDetail({minContribution, balance, requestsCount, approversCount, manager}){
+ function CampaignDetail({minContribution, balance, requestsCount, approversCount, manager,address}){
     const router = useRouter();
-    console.log(manager)
+
     const arr = [
         {
             header: manager,
@@ -82,7 +82,7 @@ const Item = styled(Paper)(({ theme }) => ({
             </Grid>
             <Grid columns={{xs:2}}>
             <Grid xs={4}>
-                <Participate />
+                <Participate address={address} />
             </Grid>
             </Grid>
       
@@ -100,7 +100,8 @@ CampaignDetail.getInitialProps = async (router) => {
         balance: campaignDetail[1],
         requestsCount: campaignDetail[2],
         approversCount: campaignDetail[3],
-        manager: campaignDetail[4]
+        manager: campaignDetail[4],
+        address
     
     };
   };
