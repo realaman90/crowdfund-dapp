@@ -1,0 +1,28 @@
+
+// Test zelev
+{
+    "buyer_name": "Aman Test",
+    "buyer_address": "",
+    "buyer_items": [
+        {
+            "item": "Test",
+            "price": 100
+        }
+    ],
+    "subtotal": "80",
+    "seller_name": "test test",
+    "seller_address": "Skattegårdsgatan, 511 56 Kinna, Suède",
+    "seller_tva": "FR21232132132131",
+    "seller_siret": "FR1234534353",
+    "total_amount": "100",
+    "invoice_date": "06/02/2023",
+    "invoice_number_parent": "455804966664405000",
+    "total_tax": "21232132132131",
+    "tax_percent_buyer": "20",
+    "zelev_fee": "16",
+    "zelev_tva": "FR 676892122122122",
+    "zelev_tax_percent": "0.2",
+    "zelev_total_tax": "3,2",
+    "invoice_number_prof": "762137069800128500",
+    "noTvaReg": "test"
+}

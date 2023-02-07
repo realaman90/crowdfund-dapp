@@ -2,7 +2,7 @@
 import { LoadingButton } from "@mui/lab";
 import { Card, CardActionArea, CardContent, Box, Button, TextField,Alert,Snackbar } from "@mui/material"
 import { useState } from "react"
-import campaign from "ethereum/campaign";
+import Campaign from "ethereum/campaign";
 import { useRouter } from "next/router";
 
 import web3 from "ethereum/web3";
@@ -18,15 +18,18 @@ function Participate(address){
     }
     const handleClick=async()=>{
        if(contributionValue > 0){ 
-        const nCampaign = campaign(address);
-        console.log(nCampaign)
+        const campaign = Campaign.at(address);
+        console.log(address)
         
         try {
             const accounts = await web3.eth.getAccounts();
-            await nCampaign.methods.contribute().send({
-                from:accounts[0],
-                value: web3.utils.toWei(contributionValue,'ether')
-            })
+            // console.log(accounts[0]);
+            // await Campaign(address).methods.contribute().send({
+            //     from:accounts[0],
+            //     value: web3.utils.toWei(contributionValue,'ether')
+            // })
+            const res = await campaign.methods.getSummary().call();
+            console.log(res)
             router.replace(`campaign/view/${address}`)
 
         } catch (error) {
