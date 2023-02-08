@@ -31,7 +31,7 @@ function Home({ campaigns }) {
       <Grid key={address} item xs={10} md={10}>
           <Item>
             <Typography variant='subtitle' sx={{overflowWrap: "break-word"}}>{address}</Typography>
-            <Link href={`/campaign/view/${address}`}   style={{textDecoration:'none', }}><Typography>view campaign</Typography></Link>
+            <Link href={`/campaign/${address}`}   style={{textDecoration:'none', }}><Typography>view campaign</Typography></Link>
           </Item>
         </Grid>
     )
