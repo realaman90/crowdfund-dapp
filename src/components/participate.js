@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 import web3 from "ethereum/web3";
 
-function Participate(address){
+function Participate({address}){
     
     const router = useRouter();
     const [contributionValue, setContributionValue] = useState(0);
@@ -18,24 +18,27 @@ function Participate(address){
     }
     const handleClick=async()=>{
        if(contributionValue > 0){ 
-        const campaign = Campaign.at(address);
-        console.log(address)
+        
+        const campaign = Campaign(address);
+        setIsLoading(!isLoading);
         
         try {
             const accounts = await web3.eth.getAccounts();
-            // console.log(accounts[0]);
-            // await Campaign(address).methods.contribute().send({
-            //     from:accounts[0],
-            //     value: web3.utils.toWei(contributionValue,'ether')
-            // })
-            const res = await campaign.methods.getSummary().call();
-            console.log(res)
-            router.replace(`campaign/view/${address}`)
+            console.log(accounts[0]);
+            await Campaign(address).methods.contribute().send({
+                from:accounts[0],
+                value: web3.utils.toWei(contributionValue,'ether')
+            })
+            setIsLoading(false);
+            router.replace(`${address}`);
+            
 
         } catch (error) {
+            setIsLoading(!isLoading)
             console.log(error)
             setMsg('Oops something went wrong')
         }}else{
+            setIsLoading(!isLoading)
             setMsg('Please enter a minimum balance')
         }
 
